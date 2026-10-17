@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "schedule-grok"
+version = "0.1.0"
+description = "Grok reactions module for student schedules"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["schedule_grok*"]
+
+[tool.setuptools.package-data]
+"*" = ["config.json"]
