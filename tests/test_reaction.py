@@ -27,9 +27,10 @@ class ConfigTests(unittest.TestCase):
     def test_bundled_defaults_include_requested_restrictions(self):
         config = load_config()
         self.assertEqual(config.timeout, 30)
-        self.assertIn("strict", config.cli_args)
+        self.assertIn("--output-format", config.cli_args)
+        self.assertIn("json", config.cli_args)
+        self.assertIn("--no-plan", config.cli_args)
         self.assertIn("--no-subagents", config.cli_args)
-        self.assertIn("MCPTool(*)", config.cli_args)
 
     def test_partial_override_preserves_defaults(self):
         config = load_config(self.write_config({"timeout": 12, "enabled": False}))

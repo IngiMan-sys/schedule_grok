@@ -11,6 +11,7 @@ import json
 import logging
 import math
 import os
+import shutil
 import signal
 from dataclasses import dataclass, fields, replace
 from pathlib import Path
@@ -181,7 +182,8 @@ async def generate_grok_reaction(
         )
         prompt = config.prompt_template.replace("{schedule_diff}", diff)
         prompt += "\n\n" + profanity_instruction
-        cmd = [config.cli_path, *config.cli_args, "-p", prompt]
+        resolved_cli = shutil.which(config.cli_path) or config.cli_path
+        cmd = [resolved_cli, *config.cli_args, "-p", prompt]
 
         # Do not expose the notification project's working directory to Grok.
         # Authentication and user-level Grok settings still come from its HOME.
