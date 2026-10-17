@@ -26,7 +26,7 @@ class ConfigTests(unittest.TestCase):
 
     def test_bundled_defaults_include_requested_restrictions(self):
         config = load_config()
-        self.assertEqual(config.timeout, 30)
+        self.assertEqual(config.timeout, 120)
         self.assertIn("--output-format", config.cli_args)
         self.assertIn("json", config.cli_args)
         self.assertIn("--no-plan", config.cli_args)

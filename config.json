@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "cli_path": "grok",
-  "timeout": 30,
+  "timeout": 120,
   "max_diff_chars": 12000,
   "max_reaction_chars": 240,
   "allow_profanity": true,

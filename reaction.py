@@ -219,7 +219,12 @@ async def generate_grok_reaction(
         except json.JSONDecodeError:
             reaction = raw or None
         if reaction:
-            return reaction[:config.max_reaction_chars].strip() or None
+            cleaned = reaction.strip()
+            if (cleaned.startswith('"') and cleaned.endswith('"')) or (
+                cleaned.startswith('«') and cleaned.endswith('»')
+            ):
+                cleaned = cleaned[1:-1].strip()
+            return cleaned[:config.max_reaction_chars].strip() or None
         return None
     except asyncio.TimeoutError:
         logger.warning("Grok CLI generation timed out after %ss", config.timeout)
